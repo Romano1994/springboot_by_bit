@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity //테이블과 관련이 있다는 것을 알려준다
-@Table(name = "board")
+@Table(name = "board" )
 public class BoardDTO {
 	
 	@Id

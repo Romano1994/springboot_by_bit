@@ -15,14 +15,7 @@ public class Chapter06JpaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter06JpaApplication.class, args);
 		
-//		double num;
-//		double per;
-//		
-//		for(int i=1; i <= 2; i++) {
-//			for(int j=1; j <= 10; j++) {
-//				per = 
-//			}
-//		}
+
 	}
 
 }
@@ -46,7 +39,7 @@ spring-boot-starter-data-jpa 의존성을 추가하고 @Entity 어노테이션�
  * @EntityScan
 어노테이션으로 엔티티 클래스를 스캔할 곳을 지정하는데 사용한다.
 메인 어플리케이션 패키지 내에 엔티티 클래스가 없는 경우 어노테이션을 사용해서 패키지밖에 존재하는 
-엔티티를 지정할 수 있다.
+엔티티를 지정할 수 있다
 기본적으로 @EnableAutoConfiguration 어노테이션에 의해서 지정한 곳에서 엔티티를 스캔한다.
 
 
