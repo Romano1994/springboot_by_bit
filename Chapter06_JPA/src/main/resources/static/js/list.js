@@ -32,23 +32,30 @@ $("#searchBtn").click(function(){
 	    $.ajax({
         type: "post",
         url: "/user/search",
-        data: 'id=' + $("#keyword").val(),
+        data: {"searchOption" : $("#searchOption").val(),
+        		"keyword" : $("#keyword").val()},
         dataType: "json",
         success: function(data){
-            $("<tr/>").append($("<td/>",{
+			$("#userListTable tr:gt(0)").remove();
+			
+            $.each(data, function(data, items){
+                $("<tr/>").append($("<td/>",{
                     align : "center",
-                    text : data.name
+                    text : items.name
                 })).append($("<td/>",{
                     align : "center",
-                    text : data.id
+                    text : items.id
                 })).append($("<td/>",{
                     align : "center",
-                    text : data.pwd
+                    text : items.pwd
                 })).appendTo($("#userListTable"));
+            })
         },
-        error: function (err) {
-            console.log(err);
-        }
+        error: function (request, status, error) {
+                console.log("code: " + request.status)
+                console.log("message: " + request.responseText)
+                console.log("error: " + error);
+            }
     });
 	}
 });
