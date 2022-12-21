@@ -11,72 +11,78 @@ import org.springframework.web.bind.annotation.*;
 import user.bean.UserDTO;
 import user.service.UserService;
 
-@Controller
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
+@RestController
 @RequestMapping(value = "user")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(value = "http://localhost:3000")
 public class UserController {
-	@Autowired
-	private UserService userService;
-	
-	@GetMapping(value = "/writeForm")
-	public String writeForm() {
-		return "user/writeForm";
-	}
-	
-	@PostMapping(value = "write")
-	public void write(@RequestBody UserDTO userDTO) {
-		userService.write(userDTO);
-	}
-	
-	@PostMapping(value = "checkId")
-	@ResponseBody
-	public String checkId(@RequestBody String id){
-		System.out.println("id = "+id);
-		return userService.checkId(id);
-	}
-	
-	@GetMapping(value = "list")
-	public String list() {
-		return "user/list";
-	}
-	
-	@RequestMapping(value = "getUserList")
-	@ResponseBody
-	public List<UserDTO> getUserList() {
-		return userService.getUserList();
-	}
-	
-	@GetMapping(value = "updateForm")
-	public String updateForm() {
-		return "user/updateForm";
-	}
-	
-	@PostMapping(value = "getUser")
-	@ResponseBody
-	public Optional<UserDTO> getUser(@RequestParam String id) {
-		return userService.getUser(id);
-	}
-	
-	@PostMapping(value = "update")
-	@ResponseBody
-	public void update(@ModelAttribute UserDTO userDTO) {
-		userService.update(userDTO);
-	}
-	
-	@GetMapping(value = "deleteForm")
-	public String deleteForm() {
-		return "user/deleteForm";
-	}
-	
-	@PostMapping(value = "delete")
-	@ResponseBody
-	public void delete(@RequestParam String id) {
-		userService.delete(id);
-	}
-	
-	@PostMapping(value = "search")
-	@ResponseBody
-	public List<UserDTO> search(@RequestParam Map<String, String> map){ //searchOption, keyword
-		return userService.search(map);
-	}
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping(path = "/writeForm")
+    public String writeForm() {
+        return "user/writeForm";
+    }
+
+    @PostMapping(path = "write")
+    public void write(@RequestBody UserDTO userDTO) {
+        userService.write(userDTO);
+    }
+
+    @GetMapping(path = "checkId")
+    @ResponseBody
+    public String checkId(@RequestParam String id) {
+        return userService.checkId(id);
+    }
+
+    @GetMapping(path = "list")
+    public String list() {
+        return "user/list";
+    }
+
+    @GetMapping(path = "getUser")
+    @ResponseBody
+    public Optional<UserDTO> getUser(@RequestParam String id) {
+        System.out.println(id);
+        return userService.getUser(id);
+    }
+
+    @RequestMapping(path = "getUserList")
+    @ResponseBody
+    public List<UserDTO> getUserList() {
+        return userService.getUserList();
+    }
+
+    @GetMapping(path = "updateForm")
+    public String updateForm() {
+        return "user/updateForm";
+    }
+
+    @PutMapping(path = "update")
+    @ResponseBody
+    public void update(@RequestBody UserDTO userDTO) {
+        userService.update(userDTO);
+    }
+
+    @GetMapping(path = "deleteForm")
+    public String deleteForm() {
+        return "user/deleteForm";
+    }
+
+    @DeleteMapping(path = "delete")
+    public void delete(@RequestParam String id) {
+        userService.delete(id);
+    }
+
+    @GetMapping(path = "search")
+    @ResponseBody
+    public List<UserDTO> search(@RequestParam Map<String, String> map) { //searchOption, keyword
+        System.out.println(map.get("searchOption"));
+        System.out.println(map.get("keyword"));
+
+        return null;
+//        return userService.search(map);
+    }
 }

@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import List from '../user/List';
-import WriteForm from '../user/WriteForm';
 
 const Index = () => {
 
